@@ -17,10 +17,10 @@ export class Controller {
         return {data: this.service.get("identifier")};
     }
 
-    post(/* request */) {
+    post(body) {
         // validate
 
-        return this.service.create({} as CreateDogPayloadInterface);
+        return this.service.create(body as CreateDogPayloadInterface);
     }
 
     put(/* request */) {

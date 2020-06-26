@@ -3,5 +3,4 @@ export interface CreateDogPayloadInterface {
     race: string;
     size: string; // Medium, Small, Big
     age: number;
-    id: number;
 }

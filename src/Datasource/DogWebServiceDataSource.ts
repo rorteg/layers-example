@@ -1,7 +1,7 @@
-import {DatasourceInterface} from "./DatasourceInterface";
+import {DataSourceInterface} from "./DataSourceInterface";
 import { CreateDogPayloadInterface, PutPayloadInterface } from "../Http/Payload";
 
-export class DogWebServiceDataSource implements DatasourceInterface{
+export class DogWebServiceDataSource implements DataSourceInterface{
     create(payload: CreateDogPayloadInterface) {
         return {
             dog_color: 'brown',

@@ -1,7 +1,7 @@
-import { GenericPayloadInterface } from "./GenericPayloadInterface";
+import { AdapterInterface } from "./AdapterInterface";
 import {HealthConditionInterface} from "../../Datasource/HealthCondition/HealthConditionInterface";
 
-export interface DogBuilderPayloadInterface extends GenericPayloadInterface {
+export interface DogBuilderPayloadInterface extends AdapterInterface {
     color: string;
     race: string;
     size: string; // Medium, Small, Big

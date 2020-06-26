@@ -1,8 +1,8 @@
-import { GenericPayloadInterface } from "../../Constructor/Builder/GenericPayloadInterface";
-import { BuilderPayloadInterface } from "../../Constructor/Builder/BuilderPayloadInterface";
+import { AdapterInterface } from "../../Constructor/Builder/AdapterInterface";
+import {DogBuilderPayloadInterface} from "../../Constructor/Builder/DogBuilderPayloadInterface";
 
-export class HttpDogCreatePayloadAdapter implements GenericPayloadInterface {
-    adapt(payload: any): BuilderPayloadInterface {
+export class HttpDogCreatePayloadAdapter implements AdapterInterface {
+    convert(payload: any): DogBuilderPayloadInterface {
         throw new Error("Method not implemented.");
     }
 

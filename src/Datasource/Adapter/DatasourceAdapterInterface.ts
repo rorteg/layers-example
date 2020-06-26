@@ -1,5 +1,5 @@
-import { DatasourceInterface } from "../DatasourceInterface";
+import { DataSourceInterface } from "../DataSourceInterface";
 
-export interface DatasourceAdapterInterface extends DatasourceInterface {
+export interface DatasourceAdapterInterface extends DataSourceInterface {
     
 }

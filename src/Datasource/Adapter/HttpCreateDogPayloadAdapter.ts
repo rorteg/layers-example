@@ -1,9 +1,9 @@
-import { GenericPayloadInterface } from "../../Constructor/Builder/GenericPayloadInterface";
+import { AdapterInterface } from "../../Constructor/Builder/AdapterInterface";
 import {CreateDogPayloadInterface} from "../../Http/Payload";
 
-export class HttpCreateDogPayloadAdapter implements GenericPayloadInterface {
+export class HttpCreateDogPayloadAdapter implements AdapterInterface {
 
-    public adapt(payload: CreateDogPayloadInterface) {
+    public convert(payload: CreateDogPayloadInterface) {
         return {
             dog_color: payload.color,
             dog_race: payload.race,

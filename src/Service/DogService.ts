@@ -9,47 +9,60 @@ import {DogBuilderPayloadInterface} from "../Constructor/Builder/DogBuilderPaylo
 import {HeathConditionAPI} from "../Datasource/HealthCondition/HeathConditionAPI";
 import {HealthCondition} from "../Entity/HealthCondition";
 import {HealthConditionInterface} from "../Datasource/HealthCondition/HealthConditionInterface";
+import {DogFCDataSource} from "../Datasource/FC/DogFCDataSource";
+import {DogFCDataSourceAdapter} from "../Datasource/FC/Adapter/DogFCDataSourceAdapter";
+import {AdapterInterface} from "../Constructor/Builder/AdapterInterface";
+import {DataSourceInterface} from "../Datasource/DataSourceInterface";
+import {TemperServiceInterface} from "./TemperServiceInterface";
 
 export class DogService implements ServiceInterface {
-    private dataSourceAdapter: DatasourceAdapterInterface;
     private dogBuilder: DogBuilderInterface;
     private httpCreateDogPayloadAdapter: HttpCreateDogPayloadAdapter;
+    private temperService: TemperService;
     private healthConditionAPI: HeathConditionAPI;
+    private dogMySQLDataSource: DogFCDataSource;
+    private dogFCDataSourceAdapter: DogFCDataSourceAdapter;
 
     constructor(
-        dataSourceAdapter: DatasourceAdapterInterface,
         dogBuilder: DogBuilderInterface,
-        httpCreateDogPayloadAdapter: HttpCreateDogPayloadAdapter,
-        temperService: TemperService,
-        healthConditionAPI: HeathConditionAPI
+        httpCreateDogPayloadAdapter: AdapterInterface,
+        temperService: TemperServiceInterface,
+        healthConditionAPI: DataSourceInterface,
+        dogMySQLDataSource: DataSourceInterface,
+        dogFCDataSourceAdapter: AdapterInterface
     ) {
-        this.dataSourceAdapter = dataSourceAdapter;
         this.dogBuilder = dogBuilder;
         this.healthConditionAPI = healthConditionAPI;
         this.httpCreateDogPayloadAdapter = httpCreateDogPayloadAdapter;
+        this.dogMySQLDataSource = dogMySQLDataSource;
+        this.dogFCDataSourceAdapter = dogFCDataSourceAdapter;
+        this.temperService = temperService;
     }
 
-    async create(dogPayload: CreateDogPayloadInterface) {
-        const temper = TemperService.get(dogPayload.age, dogPayload.race, dogPayload.size);
-        const healthCondition = await this.healthConditionAPI.get(dogPayload.id);
+    create(dogPayload: CreateDogPayloadInterface) {
+        const temper = this.temperService.get(dogPayload.age, dogPayload.race, dogPayload.size);
+        const healthCondition = this.healthConditionAPI.get(dogPayload);
 
         this.dogBuilder.buildDog(dogPayload, temper);
         this.dogBuilder.buildHealthCondition(healthCondition);
 
         const dog = this.dogBuilder.getResult();
 
-        //return this.dogRepository.create(dog);
+        const dataSourceDog = this.dogFCDataSourceAdapter.convert(dog);
+
+        return this.dogMySQLDataSource.create(dataSourceDog);
     }
 
     update(payload: PutPayloadInterface): boolean {
-        return this.dataSourceAdapter.update(payload);
+        return true;
     }
     
     get(identifier: any): EntityInterface {
-        const data = this.dataSourceAdapter.get(identifier) as BuilderPayloadInterface;
+        /*const data = this.dataSourceAdapter.get(identifier) as BuilderPayloadInterface;
         return this.dogBuilder.setPayload(data)
             .buildPart()
-            .getResult();
+            .getResult();*/
+        return undefined;
     }
 
     list(criteria?: any): EntityInterface[] {

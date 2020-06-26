@@ -19,7 +19,7 @@ export class DogBuilder implements DogBuilderInterface {
         this.dog
             .setAge(dogPayload.age)
             .setColor(dogPayload.color)
-            .setRace(dogPayload['race'])
+            .setRace(dogPayload.race)
             .setSize(dogPayload.size)
             .setTemper(temper);
     }
