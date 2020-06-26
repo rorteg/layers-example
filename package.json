@@ -1,0 +1,22 @@
+{
+  "name": "@madeiramadeirabr/service-skeleton",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 10000 --reporter spec --require tests/bootstrap.js -r ts-node/register --recursive './tests/**/*.test.ts'"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.12.39",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.3",
+    "nyc": "^15.1.0",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.9.2"
+  }
+}
