@@ -1,3 +1,3 @@
 export interface GenericPayloadInterface {
-    extract(payload: any);
+    //adapt(payload: any);
 }

@@ -1,12 +1,12 @@
 import {
-    PostPayloadInteface,
+    CreateDogPayloadInterface,
     PutPayloadInterface
 } from "../Http/Payload";
 
 import {EntityInterface} from "../Entity/EntityInterface";
 
 export interface ServiceInterface {
-    create(payload: PostPayloadInteface): any;
+    create(payload: CreateDogPayloadInterface): any;
     update(payload: PutPayloadInterface): boolean;
     get(indentifier: any): EntityInterface;
     list(criteria?: any): EntityInterface[];

@@ -1,9 +1,14 @@
 import {DatasourceInterface} from "./DatasourceInterface";
-import { PostPayloadInteface, PutPayloadInterface } from "../Http/Payload";
+import { CreateDogPayloadInterface, PutPayloadInterface } from "../Http/Payload";
 
-export class Datasource implements DatasourceInterface{
-    create(payload: PostPayloadInteface) {
-        return "id";
+export class DogWebServiceDataSource implements DatasourceInterface{
+    create(payload: CreateDogPayloadInterface) {
+        return {
+            dog_color: 'brown',
+            dog_race: 'husky',
+            dog_size: 'big',
+            dog_age: 12
+        }
     }
 
     update(payload: PutPayloadInterface): boolean {

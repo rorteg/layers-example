@@ -1,6 +1,6 @@
 import {ServiceInterface} from "../../Service/ServiceInterface";
 import {
-    PostPayloadInteface,
+    CreateDogPayloadInterface,
     PutPayloadInterface
 } from "../Payload";
 
@@ -20,7 +20,7 @@ export class Controller {
     post(/* request */) {
         // validate
 
-        return this.service.create({} as PostPayloadInteface);
+        return this.service.create({} as CreateDogPayloadInterface);
     }
 
     put(/* request */) {

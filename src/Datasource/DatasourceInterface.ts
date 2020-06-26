@@ -1,10 +1,10 @@
 import {
-    PostPayloadInteface,
+    CreateDogPayloadInterface,
     PutPayloadInterface
 } from "../Http/Payload";
 
 export interface DatasourceInterface {
-    create(payload: PostPayloadInteface): any;
+    create(payload: CreateDogPayloadInterface): any;
     update(payload: PutPayloadInterface): boolean;
     get(indentifier: any): any;
     list(criteria?: any): {}[];

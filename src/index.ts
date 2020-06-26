@@ -1,13 +1,13 @@
-import {Datasource} from "./Datasource/Datasource";
-import {DatasourceAdapter} from "./Datasource/Adapter/DatasourceAdapter";
-import { Builder } from "./Constructor/Builder/Builder";
-import { Service } from "./Service/Service";
+import {DogWebServiceDataSource} from "./Datasource/DogWebServiceDataSource";
+import {HttpCreateDogPayloadAdapter} from "./Datasource/Adapter/HttpCreateDogPayloadAdapter";
+import { DogBuilder } from "./Constructor/Builder/DogBuilder";
+import { DogService } from "./Service/DogService";
 import { Controller } from "./Http/Controller/Controller";
 
-const datasource = new Datasource();
-const datasourceAdapter = new DatasourceAdapter(datasource);
-const builder = new Builder();
-const service = new Service(datasourceAdapter, builder);
+const datasource = new DogWebServiceDataSource();
+const datasourceAdapter = new HttpCreateDogPayloadAdapter(datasource);
+const builder = new DogBuilder();
+const service = new DogService(datasourceAdapter, builder);
 
 const controller = new Controller(service);
 console.log(controller.get());
